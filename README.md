@@ -154,6 +154,42 @@ This method is used to test stats functionality. It asserts true when the stats 
 tests_output:
 This method is used to test output functionality. I'm returning 0 in returning function. It will assert true when the returned output is 0.  
 
+Tree Structure:  
+.
+├── COLLABORATORS
+├── LICENSE
+├── Pipfile
+├── README.md
+├── project1
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-39.pyc
+│   │   └── redactor.cpython-39.pyc
+│   ├── files
+│   │   ├── sample.md.redacted
+│   │   ├── sample.txt.redacted
+│   │   ├── sample1.md.redacted
+│   │   └── sample1.txt.redacted
+│   ├── main.py
+│   ├── redactor.py
+│   ├── sample.md
+│   ├── sample.txt
+│   ├── sample1.md
+│   ├── sample1.txt
+│   ├── t
+│   └── tt
+├── setup.cfg
+├── setup.py
+└── tests
+    ├── __pycache__
+    │   └── main_test.cpython-39-pytest-7.0.1.pyc
+    ├── files
+    │   └── sample.txt.redacted
+    ├── main_test.py
+    ├── sample.txt
+    └── test_stats
+
+6 directories, 26 files
 
 References:  
 https://www.holisticseo.digital/python-seo/nltk/wordnet  
