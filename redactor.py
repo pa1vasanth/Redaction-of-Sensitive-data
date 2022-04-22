@@ -17,7 +17,7 @@ nltk.download('wordnet')
 nltk.download('omw-1.4')
 
 count_list = []
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
 def input_files(txt_format):
     files=[]
@@ -32,8 +32,7 @@ def input_files(txt_format):
         data=data.replace('\n',' ')
         data=data.replace('\t',' ')
         glob_data.append(data)
-    
-    print(myfiles)
+
     return glob_data,myfiles
 
 def cleaned_data(glob_data):
@@ -54,12 +53,10 @@ def names(glob_data):
     for list_data  in glob_data:
         names_data=[]
         token,entities,doc=cleaned_data(list_data)
-        print(doc)
         for entity in entities.subtrees():
             if (entity.label()==(labels[0]or labels[1])):
                 for leaf in entity.leaves():
                     names_data.append(leaf[0])
-        print(names_data)
         if(len(names_data)==0):
             temp="The Masked Count of Names :"+ str(len(names_data))
             count_list.append(temp)
@@ -92,7 +89,6 @@ def dates(glob_data):
                 for k in entity.leaves():
                     dates_data.append(k[0])
         
-        print(dates_data)
         if(len(dates_data)==0):
             temp="The Masked Count of Dates :"+ str(len(dates_data))
             count_list.append(temp)
@@ -115,14 +111,10 @@ def phones(glob_data):
             
         match1=re.findall(r'(\+\d{1,2})?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$',str(doc))
         match2=re.findall(r'((?:(?<![\d-])(?:\+?\d{1,2}[-.\s*]?)?(?:\(?\d{3}\)?[-.\s*]?)?\d{3}[-.\s*]?\d{4}(?![\d-]))|(?:(?<![\d-])(?:(?:\(\+?\d{2}\))|(?:\+?\d{2}))\s*\d{2}\s*\d{3}\s*\d{4}(?![\d-])))',str(doc))
-        print(match)
-        print(match1)
-        print(match2)
         phne_data=match+match1+match2
         for i in phne_data:
             if(len(i)==10 or len(i)==12):
                 phone_data.append(i)
-        print(phone_data) 
         if(len(phone_data)==0):
             temp="The Masked Count of Phones :"+ str(len(phone_data))
             count_list.append(temp)
@@ -177,7 +169,6 @@ def address(glob_data):
         match2=re.findall(r'\d{1,4} [\W\S]{1,20}(?:street|st|avenue|ave|road|rd|highway|hwy|square|sq|trail|trl|drive|dr|court|ct|parkway|pkwy|circle|cir|boulevard|blvd)\W?(?=\s|$)[\W\S](?:unit|apt|appartment) \d{1,4}[\W\S]{1,15}[\W\S](?:Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New[ ]Hampshire|New[ ]Jersey|New[ ]Mexico|New[ ]York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|WyomingZ|AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY)[\W\S]\d{1,5}',str(doc),flags=0) 
         match1=re.findall(r'^\d{1,10}( \w+){1,10}( ( \w+){1,10})?( \w+){1,10}[,.](( \w+){1,10}(,)? [A-Z]{2}( [0-9]{5})?)? $',str(doc),flags=0)
         address_data=address_data+match+match1+match2 
-        print(address_data)
         if(len(address_data)==0):
             temp="The Masked Count of Address :"+ str(len(address_data))
             count_list.append(temp)
@@ -210,7 +201,6 @@ def concept(glob_data,words):
             for i in token:
                 if str(i.lower()) in synonyms:
                     concept_data.append(i)
-            print(concept_data)
             if(len(concept_data)==0):
                 temp="The Masked Count of Concept :"+ str(len(concept_data))
                 count_list.append(temp)
@@ -316,7 +306,7 @@ if __name__ == "__main__":
 
     if args.concept:
         input_data,list_data = concept(input_data, args.concept)
-
+        
     if args.output:
         output( files,input_data, args.output)
 

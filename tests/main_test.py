@@ -6,7 +6,7 @@ import project1
 import nltk
 import spacy
 import re
-from project1 import redactor
+import redactor
 nlp=spacy.load('en_core_web_sm')
 
 def test_input_files():
