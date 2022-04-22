@@ -2,6 +2,12 @@ CS5293 sp22
 Project1  
 Pavan Vasanth Kommineni   
 
+The command line:
+pipenv run python redactor.py  --input '*.txt' --names --dates --address --phones --genders --concept 'kid' --concept 'jail'  --output 'files' --stats stdout
+
+test cases checking:  
+pipenv run python -m pytest -v  
+
 I have changed the redactor.py location earlier it was in project1 sub directory along with main.py consists of main function.   
 
 Now i have attached the main function(the main.py code)  in redactor.py and changed the location to main directory.   
@@ -18,5 +24,8 @@ I have added few extra regex patterns for the dates and address.
 For the output earlier i assumed .redacted to be created in files directory.  
 In the updated code; I'm checking whether directory is available or not. If not new directory will be created and the output redacted file will be created in that directory.  
 
-
+For the stats:  
+Stdout: The stats will print in the concole
+stderr: Errors  along with stats will print in the console
+***: the stats will write on *** file.
 

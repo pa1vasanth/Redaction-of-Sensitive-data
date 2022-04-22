@@ -32,6 +32,8 @@ def input_files(txt_format):
         data=data.replace('\n',' ')
         data=data.replace('\t',' ')
         glob_data.append(data)
+    if(len(myfiles)==0):
+        print("There are no files of required format")
 
     return glob_data,myfiles
 
@@ -227,12 +229,23 @@ def concept(glob_data,words):
         return C_concept_redacted,count_list
 
 def stats(stderr_list,mylist,st):
-    if (str(st)=='stderr') or (str(st)=='stdout'):
+    if (str(st)=='stderr') :
+        if (len(mylist)==0):
+            print("There are no files of required format")
+        else:
+            print("There is no error")
         for i in range(len(mylist)):
             c="For The "+str(mylist[i])+" File"
             print(c)
             for k in range(i,len(stderr_list),len(mylist)):
                 print(stderr_list[k])
+    if (str(st)=='stdout'):
+        for i in range(len(mylist)):
+            c="For The "+str(mylist[i])+" File"
+            print(c)
+            for k in range(i,len(stderr_list),len(mylist)):
+                print(stderr_list[k])
+
     else:
         path=(os.getcwd())
         c_list=[]
