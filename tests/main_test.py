@@ -29,10 +29,6 @@ def test_names():
     for i in names:
         if '\u2588' in i:
             assert True
-        
-        else:
-            if(len(data)!=0):
-                assert True
 def test_dates():
     p=['*.txt','*.md']
     data,files=redactor.input_files(p)
@@ -40,10 +36,6 @@ def test_dates():
     for i in dates:
         if '\u2588' in i:
             assert True
-
-        else:
-            if(len(data)!=0):
-                assert True
 
 def test_phones():
     p=['*.txt','*.md']
@@ -53,9 +45,6 @@ def test_phones():
         if '\u2588' in i:
             assert True
 
-        else:
-            if(len(data)!=0):
-                assert True
 def test_genders():
     p=['*.txt','*.md']
     data,files=redactor.input_files(p)
@@ -64,9 +53,6 @@ def test_genders():
         if '\u2588' in i:
             assert True
 
-        else:
-            if(len(data)!=0):
-                assert True
 def test_address():
     p=['*.txt','*.md']
     data,files=redactor.input_files(p)
@@ -75,9 +61,6 @@ def test_address():
         if '\u2588' in i:
             assert True
 
-        else:
-            if(len(data)!=0):
-                assert True
 def test_concept():
     conpt=['mail']
     p=['*.txt','*.md']
@@ -86,10 +69,6 @@ def test_concept():
     for i in con:
         if '\u2588' in i:
             assert True
-
-        else:
-            if(len(data)!=0):
-                assert True
 
 def test_stats():
     conpt=['mail']
